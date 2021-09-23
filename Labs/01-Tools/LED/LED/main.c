@@ -19,12 +19,14 @@
  * several arguments. Do NOT put a semicolon character at the end of 
  * directives. This is a common mistake.
  */
-#define LED_GREEN   PB5 // AVR pin where green LED is connected
-#define SHORT_DELAY 13 // Delay in milliseconds
-#ifndef F_CPU           // Preprocessor directive allows for conditional
-                        // compilation. The #ifndef means "if not defined".
-# define F_CPU 16000000 // CPU frequency in Hz required for delay
-#endif                  // The #ifndef directive must be closed by #endif
+#define LED_GREEN   PB5     // AVR pin where green LED is connected
+#define SHORT_DELAY1 100    // Delay for dot
+#define SHORT_DELAY2 300   // Delay for underline
+#define SHORT_DELAY3 1000   // Delay between letters
+#ifndef F_CPU               // Preprocessor directive allows for conditional
+                            // compilation. The #ifndef means "if not defined".
+# define F_CPU 16000000     // CPU frequency in Hz required for delay
+#endif                      // The #ifndef directive must be closed by #endif
 
 /* Includes ----------------------------------------------------------*/
 /* Include another C language file into the current file at the location
@@ -53,11 +55,43 @@ int main(void)
     while (1)
     {
         // Pause several milliseconds
-        _delay_ms(SHORT_DELAY);
+        _delay_ms(SHORT_DELAY2);        // D
 
         // Invert LED in Data Register
         // PORTB = PORTB xor 0010 0000
         PORTB = PORTB ^ (1<<LED_GREEN);
+       
+        _delay_ms(SHORT_DELAY1);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // D
+       
+        _delay_ms(SHORT_DELAY1);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // D
+        
+        _delay_ms(SHORT_DELAY3);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // space
+        
+         _delay_ms(SHORT_DELAY1);
+        PORTB = PORTB ^ (1<<LED_GREEN);  //E
+        
+        _delay_ms(SHORT_DELAY3);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // space
+
+        _delay_ms(SHORT_DELAY1);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // 2
+        
+        _delay_ms(SHORT_DELAY1);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // 2
+        
+        _delay_ms(SHORT_DELAY2);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // 2
+        
+        _delay_ms(SHORT_DELAY2);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // 2
+
+        _delay_ms(SHORT_DELAY2);
+        PORTB = PORTB ^ (1<<LED_GREEN);  // 2
+
+        _delay_ms(SHORT_DELAY3);         // space
     }
 
     // Will never reach this
