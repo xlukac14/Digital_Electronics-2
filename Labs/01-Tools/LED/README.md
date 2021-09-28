@@ -114,6 +114,15 @@ int main(void)
 }
 ```
 
-## Task3: 
+## Task3: Simulation of Morse code application in SimulIDE
 
+### Circuit with ATmega328 AVR microcontroller
+
+![circuit](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/01-Tools/LED/images/image3.PNG)
+
+### LED Morse code
+
+![mcode](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/01-Tools/LED/images/image4.PNG)
+
+![mcode](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/01-Tools/LED/images/image5.PNG)
 
