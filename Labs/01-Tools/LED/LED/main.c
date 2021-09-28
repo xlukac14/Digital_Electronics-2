@@ -50,7 +50,7 @@ int main(void)
     // Set pin LOW in Data Register (LED off)
     // PORTB = PORTB and 1101 1111
     PORTB = PORTB & ~(1<<LED_GREEN);
-
+	
     // Infinite loop
     while (1)
     {
