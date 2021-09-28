@@ -1,4 +1,4 @@
-# Lab 02-Git version-control system, AVR tools
+# Lab 01-Git version-control system, AVR tools
 
 ## My GitHub repository
 
