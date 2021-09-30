@@ -1,26 +1,81 @@
-# Lab-02: 
+# Lab 2: Control of GPIO, LED, push button
 
-## My GitHub repository
+Link to my `Digital-electronics-2` GitHub repository:
 
-https://github.com/xlukac14/Digital_electronics-2
-
-## Task1: 
-
-![Uninstall/Repair](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/01-Tools/LED/images/image1.PNG)
+   [https://github.com/...](https://github.com/...)
 
 
-## Task2: 
+### Active-low and active-high LEDs
+
+1. Complete tables according to the AVR manual.
+
+| **DDRB** | **Description** |
+| :-: | :-- |
+| 0 | Input pin |
+| 1 | |
+
+| **PORTB** | **Description** |
+| :-: | :-- |
+| 0 | Output low value |
+| 1 | |
+
+| **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
+| :-: | :-: | :-: | :-: | :-- |
+| 0 | 0 | input | no | Tri-state, high-impedance |
+| 0 | 1 | | | |
+| 1 | 0 | | | |
+| 1 | 1 | | | |
+
+2. Part of the C code listing with syntax highlighting, which blinks alternately with a pair of LEDs; let one LED is connected to port B and the other to port C:
 
 ```c
+int main(void)
+{
+    // Green LED at port B
+    // Set pin as output in Data Direction Register...
+    DDRB = DDRB | (1<<LED_GREEN);
+    // ...and turn LED off in Data Register
+    PORTB = PORTB & ~(1<<LED_GREEN);
 
+    // Configure the second LED at port C
+    // WRITE YOUR CODE HERE
+
+    // Infinite loop
+    while (1)
+    {
+        // Pause several milliseconds
+        _delay_ms(BLINK_DELAY);
+
+        // WRITE YOUR CODE HERE
+    }
+
+    // Will never reach this
+    return 0;
+}
 ```
 
-## Task3: 
 
-### 
+### Push button
+
+1. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D:
+
+```c
+    // Configure Push button at port D and enable internal pull-up resistor
+    // WRITE YOUR CODE HERE
+
+    // Infinite loop
+    while (1)
+    {
+        // Pause several milliseconds
+        _delay_ms(BLINK_DELAY);
+
+        // WRITE YOUR CODE HERE
+    }
+```
 
 
+### Knight Rider
 
-### 
+1. Scheme of Knight Rider application, i.e. connection of AVR device, five LEDs, resistors, one push button, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
-
+   ![your figure]()
