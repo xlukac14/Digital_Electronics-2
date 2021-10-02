@@ -49,18 +49,20 @@ int main(void)
          //_delay_ms(BLINK_DELAY);
 
          //PORTB = PORTB ^ (1<<LED_GREEN);      
-         
+         //_delay_ms(BLINK_DELAY);
          //PORTC = PORTC ^ (1<<LED_BLUE);
          
-         if(bit_is_clear(PIND,BUTTON))
-         {
-             PORTB = PORTB ^ (1<<LED_GREEN);
-             
-             PORTC = PORTC ^ (1<<LED_BLUE);
-             
-             loop_until_bit_is_set(PIND,BUTTON);
-         }
+         //if(bit_is_clear(PIND,BUTTON))
+         //{
+         //    PORTB = PORTB ^ (1<<LED_GREEN);
+         //    
+         //    PORTC = PORTC ^ (1<<LED_BLUE);
+         //    _delay_ms(BLINK_DELAY);
+             //loop_until_bit_is_set(PIND,BUTTON);
+         //}
          
+		 
+		 
      }
 
 
