@@ -41,6 +41,13 @@ int main(void)
      DDRD =  DDRD & ~(1<<BUTTON);
      
      PORTD = PORTD | (1<<BUTTON);
+	 
+	 //......................
+	 //KNIGHT RIDER
+	 
+	 
+	 
+	 //......................
 
      // Infinite loop
      while (1)
