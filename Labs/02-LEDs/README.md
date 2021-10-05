@@ -116,12 +116,5 @@ int main(void)
 
 #### Schematic of Knight Rider LEDs in SimulIDE
 
-   ![schematic](imageX)
+   ![schematic](https://github.com/xlukac14/Digital_Electronics-2/tree/main/Labs/02-LEDs/images/KR_image1.PNG)
 
-#### Code of Knight Rider LEDs
-
-```c
-.
-.
-.
-```
