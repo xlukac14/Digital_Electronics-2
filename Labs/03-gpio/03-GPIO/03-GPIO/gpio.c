@@ -95,5 +95,5 @@ void GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num)
     //    else return(0);
         
     // III.
-    return(*reg_name & (1 << pin_num));
+    //return(*reg_name & (1 << pin_num));
 }
