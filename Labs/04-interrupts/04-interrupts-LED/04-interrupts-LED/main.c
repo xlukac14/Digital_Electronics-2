@@ -15,6 +15,7 @@
 #define LED_D2  PB4
 #define LED_D3  PB3
 #define LED_D4  PB2
+#define BUTTON	PC1
 int i = 0;
 
 /* Includes ----------------------------------------------------------*/
@@ -43,6 +44,8 @@ int main(void)
     GPIO_write_low(&PORTB, LED_D2);
     GPIO_write_low(&PORTB, LED_D3);
     GPIO_write_low(&PORTB, LED_D4);
+	
+	GPIO_config_input_pullup(&DDRC, BUTTON);
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
     // Enable interrupt and set the overflow _prescaler to 262 ms
@@ -57,6 +60,15 @@ int main(void)
     {
         /* Empty loop. All subsequent operations are performed exclusively
         * inside interrupt service routines ISRs */
+		if (GPIO_read(&PINC, BUTTON))
+		{
+			TIM1_overflow_33ms();
+		}
+		else
+		{
+			TIM1_overflow_262ms();
+		}
+	
     }
 
     // Will never reach this
