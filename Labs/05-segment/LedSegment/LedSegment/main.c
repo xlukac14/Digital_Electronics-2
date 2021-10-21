@@ -28,16 +28,18 @@ int main(void)
     SEG_init();
 
     // Test of SSD: display number '3' at position 0
-    SEG_update_shift_regs(0b00001101, 0b00010000);
+    //SEG_update_shift_regs(0b00001101, 0b00010000);
     SEG_update_shift_regs(3,0);
     
     // Configure 16-bit Timer/Counter1 for Decimal counter
     // Set the overflow prescaler to 262 ms and enable interrupt
     
-
+    TIM1_overflow_262ms();
+    
     // Enables interrupts by setting the global interrupt mask
-
-
+    TIM1_overflow_interrupt_enable();
+    sei();
+    
     // Infinite loop
     while (1)
     {
@@ -54,8 +56,29 @@ int main(void)
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Increment decimal counter value and display it on SSD.
  **********************************************************************/
+
 ISR(TIMER1_OVF_vect)
 {
     // WRITE YOUR CODE HERE
+    citac ++;
     
+    digit0 = citac / 10;
+    digit1 = citac % 10;
+}
+
+ISR(TIMER0_OVF_vect)
+{
+    static uint8_t pos = 0;
+    // doplnit reset po dosiahnuti 59... 60 -> 0
+    if(pos == 0)
+    {
+        SEG_update_shift_regs(digit0,0);
+        pos++;
+    }
+    else
+    {
+        SEG_update_shift_regs(digit1,1);
+        pos = 0;
+    }
+
 }
