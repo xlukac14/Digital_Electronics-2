@@ -29,10 +29,11 @@ int main(void)
 
     // Test of SSD: display number '3' at position 0
     SEG_update_shift_regs(0b00001101, 0b00010000);
-
+    SEG_update_shift_regs(3,0);
+    
     // Configure 16-bit Timer/Counter1 for Decimal counter
     // Set the overflow prescaler to 262 ms and enable interrupt
-
+    
 
     // Enables interrupts by setting the global interrupt mask
 
@@ -56,5 +57,5 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     // WRITE YOUR CODE HERE
-
+    
 }

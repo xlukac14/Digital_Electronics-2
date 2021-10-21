@@ -49,15 +49,6 @@ uint8_t segment_position[] = {
     0b10000000      // Position 3
 };
 
-...
-/*--------------------------------------------------------------------*/
-void SEG_update_shift_regs(uint8_t segments, uint8_t position)
-{
-    uint8_t bit_number;
-    segments = segment_value[segments];     // 0, 1, ..., 9
-    position = segment_position[position];  // 0, 1, 2, 3
-    ...
-
 void SEG_init(void)
 {
     /* Configuration of SSD signals */
@@ -77,13 +68,17 @@ void SEG_init(void)
 void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 {
     uint8_t bit_number;
-
+    segments = segment_value[segments];     // 0, 1, ..., 9 
+    position = segment_position[position];  //0, 1, 2, 3
+    
     // Pull LATCH, CLK, and DATA low
     GPIO_write_low(&PORTD, SEG_LATCH);
     GPIO_write_low(&PORTD, SEG_CLK);
     GPIO_write_low(&PORTD, SEG_DATA);
+    
     // Wait 1 us
     _delay_us(1);
+    
     // Loop through the 1st byte (segments)
     // a b c d e f g DP (active low values)
     for (bit_number = 0; bit_number < 8; bit_number++)
@@ -98,14 +93,19 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
         {
             GPIO_write_low(&PORTB, SEG_DATA);
         }
+        
         // Wait 1 us
         _delay_us(1);
+        
         // Pull CLK high
         GPIO_write_high(&PORTD, SEG_CLK);
+        
         // Wait 1 us
         _delay_us(1);
+        
         // Pull CLK low
         GPIO_write_low(&PORTD, SEG_CLK);
+        
         // Shift "segments"
         segments = segments >> 1;
     }
@@ -123,21 +123,27 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
         else
         {
             GPIO_write_low(&PORTB, SEG_DATA);
-        }            
+        }       
+             
         // Wait 1 us
         _delay_us(1);
+        
         // Pull CLK high
         GPIO_write_high(&PORTD, SEG_CLK);
+        
         // Wait 1 us
         _delay_us(1);
+        
         // Pull CLK low
         GPIO_write_low(&PORTD, SEG_CLK);
+        
         // Shift "position"
         position = position >> 1;
     }
 
     // Pull LATCH high
     GPIO_write_high(&PORTD, SEG_LATCH);
+    
     // Wait 1 us
     _delay_us(1);
 }
