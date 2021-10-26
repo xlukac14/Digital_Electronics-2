@@ -16,9 +16,7 @@
 #include "segment.h"        // Seven-segment display library for AVR-GCC
 
 #define volatile uint8_t digit0;
-.
-.
-.
+
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -74,7 +72,7 @@ ISR(TIMER1_OVF_vect)
 ISR(TIMER0_OVF_vect)
 {
     static uint8_t pos = 0;
-    // doplnit reset po dosiahnuti 59... 60 -> 0
+    
     if(pos == 0)
     {
         SEG_update_shift_regs(digit0,0);

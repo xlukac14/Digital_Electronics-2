@@ -21,7 +21,10 @@ Link to your `Digital-electronics-2` GitHub repository:
 ISR(TIMER1_OVF_vect)
 {
     // WRITE YOUR CODE HERE
-
+    citac ++;
+    
+    digit0 = citac / 10;
+    digit1 = citac % 10;
 }
 ```
 
@@ -33,8 +36,17 @@ ISR(TIMER1_OVF_vect)
 ISR(TIMER0_OVF_vect)
 {
     static uint8_t pos = 0;
-
-    // WRITE YOUR CODE HERE
+    
+    if(pos == 0)
+    {
+        SEG_update_shift_regs(digit0,0);
+        pos++;
+    }
+    else
+    {
+        SEG_update_shift_regs(digit1,1);
+        pos = 0;
+    }
 
 }
 ```
