@@ -113,59 +113,24 @@ ISR(ADC_vect)
     
     // WRITE YOUR CODE HERE
     
-    //////
-    lcd_gotoxy(8,0);
-    lcd_puts("    ");
-    lcd_gotoxy(8,0);
-    lcd_puts(lcd_string);
-
-    uart_puts("ADC value: ");
-    uart_puts(lcd_string);
-    uart_putc('\n'); // novy riadok
-    uart_putc('\r'); // pod seba
-
-    itoa(value, lcd_string, 16);
-    
-    lcd_gotoxy(8,0);
-    lcd_puts("    ");
-    lcd_gotoxy(8,0);
-    lcd_puts(lcd_string);
-    //////
+    itoa(value, lcd_string, 10);  
     lcd_gotoxy(8, 0);
     lcd_puts(lcd_string);
-    
-    
-    itoa(value, lcd_string, 10);
-    lcd_gotoxy(8, 0);
-    lcd_puts(lcd_string);
-    
-    uart_puts("ADC value");
-    uart_puts(lcd_string);
-    uart_putc('\n'); // novy riadok
-    uart_putc('\r'); // pod seba
-
-    
-    lcd_gotoxy(8, 0);
-    lcd_puts(" ");
-
+  
     lcd_gotoxy(13, 0);
-    lcd_puts(" ");
-
-
-    itoa(value, lcd_string, 10);
-    lcd_gotoxy(8, 0);
-    lcd_puts(lcd_string);
-
-    itoa(value, lcd_string, 16);
+    lcd_puts("    ");
+    itoa(value, lcd_string, 16); 
     lcd_gotoxy(13, 0);
     lcd_puts(lcd_string);
-
-
+  
     uart_puts(lcd_string);
-    uart_putc('\n'); // novy riadok
-    uart_putc('\r'); // pod seba
-    
-
+    uart_puts("r\n");
+    uart_putc('\n');
+    uart_putc('\r');
+  
 }
+    
+
+
 
 
