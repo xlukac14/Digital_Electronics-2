@@ -17,6 +17,7 @@
 #include "lcd.h"            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for conversion function
 #include "uart.h"           // Peter Fleury's UART library
+#define uint8 value;
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
