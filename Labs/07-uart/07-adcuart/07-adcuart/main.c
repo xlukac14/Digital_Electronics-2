@@ -104,33 +104,94 @@ ISR(TIMER1_OVF_vect)
  **********************************************************************/
 ISR(ADC_vect)
 {
-    
+    // WRITE YOUR CODE HERE
     uint16_t value = 0;
     char lcd_string[4] = "0000";
+
+    value = ADC;                  // Copy ADC result to 16-bit variable
+    itoa(value, lcd_string, 10);  // Convert decimal value to string
     
-    value = ADC;
-    itoa(value, lcd_string, 10);
-    
-    // WRITE YOUR CODE HERE
-    
-    itoa(value, lcd_string, 10);  
-    lcd_gotoxy(8, 0);
-    lcd_puts(lcd_string);
-  
-    lcd_gotoxy(13, 0);
-    lcd_puts("    ");
-    itoa(value, lcd_string, 16); 
-    lcd_gotoxy(13, 0);
-    lcd_puts(lcd_string);
-  
-    uart_puts(lcd_string);
-    uart_puts("r\n");
-    uart_putc('\n');
-    uart_putc('\r');
-  
+    lcd_clrscr();
+ 
+    lcd_gotoxy(1, 0); lcd_puts("value:");
+    lcd_gotoxy(3, 1); lcd_puts("key:");
+ 
+
+    if(value > 1023)
+    {
+	lcd_gotoxy(8, 0);
+	lcd_puts(lcd_string);
+	itoa(value, lcd_string, 16);
+	lcd_gotoxy(8, 1);
+	lcd_puts("non");
+	lcd_gotoxy(13,0);
+	lcd_puts(lcd_string);
+	uart_puts(lcd_string);
+	uart_puts("\n\r");
+    }
+	
+    else if(value > 640)
+    {
+	lcd_gotoxy(8, 0);
+	lcd_puts(lcd_string);
+	itoa(value, lcd_string, 16);
+	lcd_gotoxy(8, 1);
+	lcd_puts("select");
+	lcd_gotoxy(13,0);
+	lcd_puts(lcd_string);
+	uart_puts(lcd_string);
+	uart_puts("\n\r");
+		
+    else if(value > 409)
+    {
+	lcd_gotoxy(8, 0);
+	lcd_puts(lcd_string);
+	itoa(value, lcd_string, 16);
+	lcd_gotoxy(8, 1);
+	lcd_puts("left");
+	lcd_gotoxy(13,0);
+	lcd_puts(lcd_string);
+	uart_puts(lcd_string);
+	uart_puts("\n\r");
+    }
+			
+    else if(value > 257)
+    {
+         lcd_gotoxy(8, 0);
+	 lcd_puts(lcd_string);
+	 itoa(value, lcd_string, 16);
+	 lcd_gotoxy(8, 1);
+	 lcd_puts("Down");
+	 lcd_gotoxy(13,0);
+	 lcd_puts(lcd_string);
+	 uart_puts(lcd_string);
+	 uart_puts("\n\r");
+    }
+	
+    else if(value > 99)
+    {
+	lcd_gotoxy(8, 0);
+	lcd_puts(lcd_string);
+	itoa(value, lcd_string, 16);
+	lcd_gotoxy(8, 1);
+	lcd_puts("Up");
+	lcd_gotoxy(13,0);
+	lcd_puts(lcd_string);
+	uart_puts(lcd_string);
+	uart_puts("\n\r");
+    }
+	
+    else if(value > 0)
+    {
+	lcd_gotoxy(8, 0);
+	lcd_puts(lcd_string);
+	itoa(value, lcd_string, 16);
+	lcd_gotoxy(8, 1);
+	lcd_puts("Right");
+	lcd_gotoxy(13,0);
+	lcd_puts(lcd_string);
+	uart_puts(lcd_string);
+	uart_puts("\n\r");
+    }
+		
 }
-    
-
-
-
-
