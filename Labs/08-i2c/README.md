@@ -7,14 +7,14 @@ Link to this file in your GitHub repository:
 ### Arduino Uno pinout
 
 1. In the picture of the Arduino Uno board, mark the pins that can be used for the following functions:
-   * PWM generators from Timer0, Timer1, Timer2
-   * analog channels for ADC
-   * UART pins
-   * I2C pins
-   * SPI pins
-   * external interrupt pins INT0, INT1
+   * PWM generators from Timer0, Timer1, Timer2 -> PB1, PB2, PB3, PD3, PD5, PD6
+   * analog channels for ADC -> PC0, PC1, PC2, PC3, PC4, PC5
+   * UART pins -> PC6
+   * I2C pins -> PC4, PC5
+   * SPI pins -> PB3, PB4, PB5
+   * external interrupt pins INT0, INT1 -> PD2, PD3
 
-   ![your figure](Images/arduino_uno_pinout.png)
+   ![image1]()
 
 ### I2C
 
@@ -37,13 +37,23 @@ ISR(TIMER1_OVF_vect)
     switch (state)
     {
     // Increment I2C slave address
+    
     case STATE_IDLE:
         addr++;
         // If slave address is between 8 and 119 then move to SEND state
-
+        if (addr >= 8 && addr <= 119)
+        {
+            state = STATE_SEND;
+        }
+        else
+        {
+            addr = 7;
+            state = STATE_SEND;
+        }
         break;
-    
+        
     // Transmit I2C slave address and get result
+    
     case STATE_SEND:
         // I2C address frame:
         // +------------------------+------------+
@@ -56,19 +66,33 @@ ISR(TIMER1_OVF_vect)
         twi_stop();
         /* Test result from I2C bus. If it is 0 then move to ACK state, 
          * otherwise move to IDLE */
+        
+        if ((result = 0))
+        {
+            state = STATE_ACK;
+        } 
+        else
+        {
+            state = STATE_IDLE;
+        }
 
         break;
 
     // A module connected to the bus was found
     case STATE_ACK:
-        // Send info about active I2C slave to UART and move to IDLE
-
+        // Send info about active I2C slave to UART and move to IDLE 
+        //temp code here
+        itoa(addr, uart_string, 16);
+        uart_puts(uart_string);
+        uart_puts(" ");
+        state = STATE_IDLE;
         break;
 
     // If something unexpected happens then move to IDLE
     default:
         state = STATE_IDLE;
         break;
+        
     }
 }
 ```
