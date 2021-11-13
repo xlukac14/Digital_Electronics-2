@@ -14,7 +14,7 @@ Link to this file in your GitHub repository:
    * SPI pins -> PB3, PB4, PB5
    * external interrupt pins INT0, INT1 -> PD2, PD3
 
-   ![image1]()
+   ![image1](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/08-i2c/images/image1.png)
 
 ### I2C
 
@@ -99,7 +99,7 @@ ISR(TIMER1_OVF_vect)
 
 2. (Hand-drawn) picture of I2C signals when reading checksum (only 1 byte) from DHT12 sensor. Indicate which specific moments control the data line master and which slave.
 
-   ![image2]()
+   ![image2](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/08-i2c/images/image2.jpg)
 
 ### Meteo station
 
@@ -107,4 +107,4 @@ Consider an application for temperature and humidity measurement and display. Us
 
 1. FSM state diagram picture of meteo station. The image can be drawn on a computer or by hand. Concise name of individual states and describe the transitions between them.
 
-   ![image3]()
+   ![image3](https://github.com/xlukac14/Digital_Electronics-2/blob/main/Labs/08-i2c/images/image3.jpg)
