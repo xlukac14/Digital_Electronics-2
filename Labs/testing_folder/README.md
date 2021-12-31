@@ -14,3 +14,13 @@
 |  | USART_RX |  |  |
 |  | ADC |  |  |
 |  | TWI |  |  |
+
+
+| **Module** | **Description** | **MCU pin** | **Arduino pin** |
+| :-: | :-: | :-: | :-: |
+| Timer/Counter0 | OC0A | PD6 | 6 |
+| Timer/Counter0 | OC0B | PD5 | 24? |
+| Timer/Counter1 | OC1A | PB1 | 9|
+| Timer/Counter1 | OC1B | PB2 | 10 |
+| Timer/Counter2 | OC2A | PB3 | 11 |
+| Timer/Counter2 | OC2B | PD3 | 3 |
